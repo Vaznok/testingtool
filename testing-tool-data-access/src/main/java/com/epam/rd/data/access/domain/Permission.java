@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Data
 @Entity
@@ -18,6 +17,4 @@ public class Permission implements Serializable {
     @Column(unique = true)
     private String permission;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<UserRole> roles;
 }

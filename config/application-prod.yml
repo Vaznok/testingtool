@@ -1,7 +1,5 @@
 spring:
     profiles: prod
-service:
-  message: Prod profile
 spring:
   datasource:
     driver: org.mariadb.jdbc.Driver

@@ -1,7 +1,5 @@
 spring:
     profiles: dev
-service:
-  message: Dev profile
 spring:
   datasource:
     driver: org.mariadb.jdbc.Driver

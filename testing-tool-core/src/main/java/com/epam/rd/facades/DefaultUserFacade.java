@@ -2,8 +2,9 @@ package com.epam.rd.facades;
 
 import com.epam.rd.data.access.domain.User;
 import com.epam.rd.dto.MapStructUserConverter;
+import com.epam.rd.dto.TokenRoleDto;
 import com.epam.rd.dto.UserDto;
-import com.epam.rd.services.UserService;
+import com.epam.rd.services.dao.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,20 @@ public class DefaultUserFacade implements UserFacade {
     public UserDto createUser(UserDto userDto) {
         User user = userConverter.userDtoToUser(userDto);
         return userConverter.userToUserDto(userService.add(user));
+    }
+
+    @Override
+    public TokenRoleDto signIn(String email, String password) {
+        return null;
+    }
+
+    @Override
+    public void logout(String token) {
+
+    }
+
+    @Override
+    public void registration(UserDto userDto) {
+
     }
 }

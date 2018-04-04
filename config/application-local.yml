@@ -1,7 +1,5 @@
 spring:
     profiles: local
-service:
-  message: Local profile
 spring:
   datasource:
     driver: org.mariadb.jdbc.Driver

@@ -1,8 +1,11 @@
-package com.epam.rd.services.impl;
+package com.epam.rd.services.dao.impl;
 
+import com.epam.rd.data.access.domain.Authority;
 import com.epam.rd.data.access.domain.User;
+import com.epam.rd.data.access.domain.UserRoles;
+import com.epam.rd.data.access.repository.AuthorityRepository;
 import com.epam.rd.data.access.repository.UserRepository;
-import com.epam.rd.services.UserService;
+import com.epam.rd.services.dao.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +14,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements  UserService {
 
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private AuthorityRepository authorityRepository;
 
     @Override
     public List<User> findAll() {
@@ -46,5 +48,14 @@ public class UserServiceImpl implements  UserService {
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Long saveUserWithRole(User user, UserRoles userRole) {
+        Authority authority = new Authority();
+        authority.setUsername(user.getEmail());
+        authority.setAuthority(userRole);
+        authorityRepository.save(authority);
+        return userRepository.save(user).getId();
     }
 }
